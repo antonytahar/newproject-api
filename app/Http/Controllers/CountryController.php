@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\User as User;
 
-class UserController 
+use Illuminate\Http\Request;
+use App\Country;
+
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,8 @@ class UserController
      */
     public function index()
     {
-        $allusers = User::all();
-        return response()->json(['error' => false, 'message' => '', 'data' => $allusers], 200);
+        $allCountries = Country::all();
+        return response()->json(['error' => false, 'message' => '', 'data' => $allCountries], 200);
     }
 
     /**
@@ -22,9 +23,13 @@ class UserController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request = $request->all();
+        $country = new Country();
+        $country->{'name'} = $request['name'];
+        $country->save();
+        return response()->json(['error' => false, 'message' => 'Données enregistrées', 'data' => $country], 200);
     }
 
     /**
@@ -46,8 +51,8 @@ class UserController
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return response()->json(['error' => false, 'message' => '', 'data' => $user], 200);
+        $country = Country::find($id);
+        return response()->json(['error' => false, 'message' => '', 'data' => $country], 200);
     }
 
     /**
@@ -81,25 +86,20 @@ class UserController
      */
     public function destroy($id)
     {
-        //
+        try {
+            Country::where('id', $id)->delete();
+            return response()->json(['error' => false, 'message' => 'Données supprimées', 'data' => $id], 200);    
+        } catch (\Throwable $th) {
+            return response()->json(['error' => true, 'message' => 'Erreur lors de la suppression', 'data' => $id], 200);    
+        }
     }
 
-    // public function all() {
-    //     $allusers = User::all();
-    //     return response()->json(['error' => false, 'message' => '', 'data' => $allusers], 200);
-    // }
+    public function save(Request $request) {
+        $request = $request->all();
+        $country = Country::find($request['no']);
+        $country->{'name'} = $request['data']['name'];
+        $country->save();
+        return response()->json(['error' => false, 'message' => 'Données enregistrées', 'data' => $country], 200);
+    }
 
-    // public function userById($id) {
-    //     $user = User::where('ID', 'like', '%'.$id.'%')->orWhere('Name', 'like', '%'.$id.'%')->get();
-    //     return response()->json(['error' => false, 'message' => '', 'data' => $user], 200);
-    // }
-
-    // public function userByName($name) {
-    //     $query = User::where('Name', '=', $name)->get();
-    //     if(!$query) {
-    //         return response()->json(['error' => true, 'message' => 'Aucun utilisateur pour ce nom.', 'data' => null], 404);
-    //     } else {
-    //         return response()->json(['error' => false, 'message' => '', 'data' => $query], 200);
-    //     }
-    // }
 }

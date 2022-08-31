@@ -4,7 +4,7 @@
  * Modèle de la table Ticket
  */
 
-namespace App\Models;
+namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
