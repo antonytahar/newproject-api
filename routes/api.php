@@ -44,6 +44,7 @@ Route::prefix('pointing')->group(function () {
     Route::get('/{id}', 'PointingController@show'); 
     // Route::post('/save', 'PointingController@save');
     Route::post('/create', 'PointingController@create');
+    Route::put('/validatePointing', 'PointingController@validatePointing');
     // Route::post('/{id}', 'PointingController@destroy');
 });
 

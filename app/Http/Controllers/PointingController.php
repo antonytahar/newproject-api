@@ -91,4 +91,20 @@ class PointingController extends Controller
     {
         //
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function validatePointing(Request $request) {
+        $request = $request->all();
+        $pointing = Pointing::find($request['pointingid']);
+        $pointing->{'status'} = 2;
+        $pointing->save();
+        return response()->json(['error' => false, 'message' => 'Pointage validé', 'data' => $pointing['id']], 200);
+    }
+
 }
