@@ -31,7 +31,7 @@ class PointingController extends Controller
         $pointing->{'duration'} = $request['data']['duration'];
         $pointing->{'date'} = $request['data']['date'];
         $pointing->{'status'} = $request['data']['status'];
-        $pointing->{'user_id'} = $request['data']['user_id'];
+        $pointing->{'user_id'} = $request['data']['user'];
         $pointing->save();
         return response()->json(['error' => false, 'message' => 'Données enregistrées', 'data' => $pointing], 200);
     }

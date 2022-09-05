@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 Route::prefix('user')->group(function () {
-    Route::get('/alluser', 'UserController@all');
+    Route::get('/allUsers', 'UserController@index');
     Route::get('/{id}', 'UserController@userById');
 });
 
