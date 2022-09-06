@@ -45,7 +45,7 @@ Route::prefix('pointing')->group(function () {
     // Route::post('/save', 'PointingController@save');
     Route::post('/create', 'PointingController@create');
     Route::put('/validatePointing', 'PointingController@validatePointing');
-    // Route::post('/{id}', 'PointingController@destroy');
+    Route::post('/{id}', 'PointingController@destroy');
 });
 
 Route::prefix('user')->group(function () {
