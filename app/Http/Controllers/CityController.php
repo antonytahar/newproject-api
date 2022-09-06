@@ -93,9 +93,9 @@ class CityController extends Controller
     {
         try {
             City::where('id', $id)->delete();
-            return response()->json(['error' => false, 'message' => 'Données supprimées', 'data' => $id], 200);    
+            return response()->json(['error' => false, 'message' => 'Données supprimées', 'data' => $id], 200);
         } catch (\Throwable $th) {
-            return response()->json(['error' => true, 'message' => 'Erreur lors de la suppression', 'data' => $id], 200);    
+            return response()->json(['error' => true, 'message' => 'Erreur lors de la suppression', 'data' => $id], 200);
         }
     }
 

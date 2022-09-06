@@ -50,7 +50,7 @@ Route::prefix('pointing')->group(function () {
 
 Route::prefix('user')->group(function () {
     Route::get('/allUsers', 'UserController@index');
-    Route::get('/{id}', 'UserController@show'); 
+    Route::get('/{id}', 'UserController@show');
     // Route::post('/save', 'UserController@save');
     // Route::post('/create', 'UserController@create');
     // Route::post('/{id}', 'UserController@destroy');

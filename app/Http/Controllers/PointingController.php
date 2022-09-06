@@ -109,7 +109,7 @@ class PointingController extends Controller
         $pointing = Pointing::find($request['pointingid']);
         $pointing->{'status'} = 2;
         $pointing->save();
-        return response()->json(['error' => false, 'message' => 'Pointage validé', 'data' => $pointing['id']], 200);
+        return response()->json(['error' => false, 'message' => 'Pointage validé', 'data' => $pointing], 200);
     }
 
 }
